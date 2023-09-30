@@ -33,7 +33,9 @@ class MainPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/dialects");
+                },
                 child: const Text('Start'),
               ),
             ),
