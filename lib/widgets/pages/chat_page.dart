@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:localingo/widgets/components/chat_header.dart';
 
 import '../../services/chat_service.dart';
 
@@ -16,7 +17,7 @@ class ChatPage extends HookWidget {
       chatService.initConversation();
     }, []);
     return Scaffold(
-      appBar: AppBar(title: Text('Simple Chat')),
+      appBar: ChatHeader(languageType: languageType, score: chatService.score),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
