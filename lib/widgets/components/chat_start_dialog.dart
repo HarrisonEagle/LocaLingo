@@ -15,12 +15,20 @@ class ChatStartDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Text('$languageTypeで始めます！'),
+      content: Text(
+          '$languageTypeで始めます！',
+        style: const TextStyle(
+          fontSize: 20
+        ),
+      ),
       actions: <Widget>[
         GestureDetector(
           child: const Text(
             'キャンセル',
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(
+                color: Colors.grey,
+              fontSize: 16,
+            ),
           ),
           onTap: () {
             Navigator.pop(context);
@@ -29,7 +37,10 @@ class ChatStartDialog extends StatelessWidget {
         GestureDetector(
           child: const Text(
             'はい',
-            style: TextStyle(color: Colors.lightBlueAccent),
+            style: TextStyle(
+                color: Colors.lightBlueAccent,
+              fontSize: 16,
+            ),
           ),
           onTap: () {
             Navigator.pop(context);
