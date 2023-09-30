@@ -32,7 +32,10 @@ class QuizListItemComponent extends StatelessWidget {
             await showDialog(
                 context: context,
                 builder: (_) => ChatStartDialog(
-                    id: quiz.id, languageType: quiz.languageType));
+                      id: quiz.id,
+                      languageType: quiz.languageType,
+                      imagePath: quiz.imagePath,
+                    ));
           },
           onLongPress: () => {}),
     );

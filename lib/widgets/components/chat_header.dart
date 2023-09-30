@@ -12,7 +12,7 @@ class ChatHeader extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        title: Text('$languageTypeチャット'),
+        title: Text('$languageTypeテスト'),
         centerTitle: false,
         automaticallyImplyLeading: true,
         actions: <Widget>[

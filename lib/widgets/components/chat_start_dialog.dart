@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 class ChatStartDialog extends StatelessWidget {
   final int id;
   final String languageType;
+  final String imagePath;
 
   const ChatStartDialog(
-      {Key? key, required this.id, required this.languageType})
+      {Key? key,
+      required this.id,
+      required this.languageType,
+      required this.imagePath})
       : super(key: key);
 
   @override
@@ -29,7 +33,8 @@ class ChatStartDialog extends StatelessWidget {
           ),
           onTap: () {
             Navigator.pop(context);
-            Navigator.of(context).pushNamed("/chats/$languageType");
+            Navigator.of(context)
+                .pushNamed("/chats/$languageType", arguments: imagePath);
           },
         )
       ],

@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:localingo/widgets/components/chat_header.dart';
 
 import '../../services/chat_service.dart';
+import '../components/chat_list_item.dart';
 
 class ChatPage extends HookWidget {
   final String languageType;
@@ -12,6 +13,8 @@ class ChatPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final chatService = useChatService(languageType);
+    final String imagePath =
+        ModalRoute.of(context)!.settings.arguments as String;
 
     useEffect(() {
       chatService.initConversation();
@@ -23,13 +26,17 @@ class ChatPage extends HookWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
-              child: ListView.builder(
-                itemCount: chatService.chats.length,
-                itemBuilder: (context, index) => ListTile(
-                  textColor: Colors.black,
-                  title: Text(chatService.chats[index].message),
-                ),
-              ),
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: ListView.builder(
+                    itemCount: chatService.chats.length,
+                    itemBuilder: (context, index) => ListTile(
+                      textColor: Colors.black,
+                      title: ChatListItemComponent(
+                          imagePath: imagePath,
+                          conversation: chatService.chats[index]),
+                    ),
+                  )),
             ),
           ],
         ),
