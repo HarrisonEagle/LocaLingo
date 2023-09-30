@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:localingo/widgets/components/chat_start_dialog.dart';
 
-class QuizListItemComponent extends StatelessWidget {
-  final int id;
-  final String title;
-  final String subTitle;
-  final Widget leading;
+import '../../enitity/quiz.dart';
 
-  const QuizListItemComponent(
-      {Key? key,
-      required this.id,
-      required this.title,
-      required this.subTitle,
-      required this.leading})
-      : super(key: key);
+class QuizListItemComponent extends StatelessWidget {
+  final Quiz quiz;
+
+  const QuizListItemComponent({Key? key, required this.quiz}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +25,17 @@ class QuizListItemComponent extends StatelessWidget {
             ),
           ]),
       child: ListTile(
-          title: Text(title),
-          subtitle: Text(subTitle),
-          leading: leading,
+          title: Text(quiz.languageType),
+          subtitle: Text('最高${quiz.highscore}回連続'),
+          leading: Image.network(quiz.imagePath),
           onTap: () async {
             await showDialog(
                 context: context,
-                builder: (_) => ChatStartDialog(id: id, name: title));
+                builder: (_) => ChatStartDialog(
+                      id: quiz.id,
+                      languageType: quiz.languageType,
+                      imagePath: quiz.imagePath,
+                    ));
           },
           onLongPress: () => {}),
     );
