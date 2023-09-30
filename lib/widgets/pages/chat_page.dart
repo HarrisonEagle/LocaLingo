@@ -18,7 +18,6 @@ class ChatPage extends HookWidget {
     final String imagePath =
         ModalRoute.of(context)!.settings.arguments as String;
 
-
     useEffect(() {
       chatService.initConversation();
     }, []);
@@ -32,23 +31,24 @@ class ChatPage extends HookWidget {
               child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: ListView.builder(
-                    reverse: true,
-                    itemCount: chatService.chats.length,
-                    itemBuilder: (context, index) {
-                      final reversedIndex = chatService.chats.length - 1 - index;
-                      final element = chatService.chats[reversedIndex];
-                      return ListTile(
-                      textColor: Colors.black,
-                      title: ChatElementListItemComponent(
-                        imagePath: imagePath,
-                        element: element,
-                        languageType: languageType,
-                        clickable: index == 0,
-                        continueConversation: chatService.continueConversation,
-                        score: chatService.score
-                      ),
-                    );}
-                  )),
+                      reverse: true,
+                      itemCount: chatService.chats.length,
+                      itemBuilder: (context, index) {
+                        final reversedIndex =
+                            chatService.chats.length - 1 - index;
+                        final element = chatService.chats[reversedIndex];
+                        return ListTile(
+                          textColor: Colors.black,
+                          title: ChatElementListItemComponent(
+                              imagePath: imagePath,
+                              element: element,
+                              languageType: languageType,
+                              clickable: index == 0,
+                              continueConversation:
+                                  chatService.continueConversation,
+                              score: chatService.score),
+                        );
+                      })),
             ),
           ],
         ),

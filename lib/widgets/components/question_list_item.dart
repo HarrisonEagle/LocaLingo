@@ -99,7 +99,8 @@ class QuestionListItemComponent extends HookWidget {
                                                     score: score,
                                                   ));
                                         }
-                                } : null,
+                                      }
+                                    : null,
                               ),
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
