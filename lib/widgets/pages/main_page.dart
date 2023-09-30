@@ -34,7 +34,7 @@ class MainPage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed("/dialects");
+                  Navigator.of(context).pushNamed("/chats");
                 },
                 child: const Text('Start'),
               ),

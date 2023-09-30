@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class ChatStartDialog extends StatelessWidget {
   final int id;
-  final String name;
+  final String languageType;
 
-  const ChatStartDialog({Key? key, required this.id, required this.name})
+  const ChatStartDialog({Key? key, required this.id, required this.languageType})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Text('$nameで始めます！'),
+      content: Text('$languageTypeで始めます！'),
       actions: <Widget>[
         GestureDetector(
           child: const Text(
@@ -26,7 +26,9 @@ class ChatStartDialog extends StatelessWidget {
             'はい',
             style: TextStyle(color: Colors.lightBlueAccent),
           ),
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushNamed("/chats/$languageType");
+          },
         )
       ],
     );

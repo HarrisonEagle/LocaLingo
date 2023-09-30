@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:localingo/widgets/pages/chat_page.dart';
-import 'package:localingo/widgets/pages/dialect_select_page.dart';
+import 'package:localingo/widgets/pages/chat_select_page.dart';
 import 'package:localingo/widgets/pages/main_page.dart';
 
 class AppRouter extends ConsumerWidget {
@@ -24,11 +24,13 @@ class AppRouter extends ConsumerWidget {
           },
         ),
       ),
-      initialRoute: '/chat',
+      initialRoute: '/main',
       routes: <String, WidgetBuilder> {
         '/main': (BuildContext context) => const MainPage(),
-        '/chat': (BuildContext context) => const ChatPage(languageType: "関西弁"),
-        '/dialects': (BuildContext context) => const DialectSelectPage(),
+        '/chats/関西弁': (BuildContext context) => const ChatPage(languageType: "関西弁"),
+        '/chats/アイヌ語': (BuildContext context) => const ChatPage(languageType: "アイヌ語"),
+        '/chats/名古屋弁': (BuildContext context) => const ChatPage(languageType: "名古屋弁"),
+        '/chats': (BuildContext context) => ChatSelectPage(),
       },
     );
   }
