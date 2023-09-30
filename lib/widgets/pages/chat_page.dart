@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:localingo/enitity/answer.dart';
@@ -59,12 +57,14 @@ class ChatPage extends HookWidget {
               child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: ListView.builder(
-                    itemCount: chatService.chats.length,
+                    itemCount: chatElements.length,
                     itemBuilder: (context, index) => ListTile(
                       textColor: Colors.black,
                       title: ChatElementListItemComponent(
-                          imagePath: imagePath,
-                          element: chatService.chats[index]),
+                        imagePath: imagePath,
+                        element: chatElements[index],
+                        languageType: languageType,
+                      ),
                     ),
                   )),
             ),
