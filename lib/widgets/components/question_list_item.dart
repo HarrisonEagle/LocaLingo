@@ -86,7 +86,7 @@ class QuestionListItemComponent extends HookWidget {
                                                 builder: (_) =>
                                                     QuizAllCorrectDialog(
                                                       question: question,
-                                                      score: score,
+                                                      score: score + 1,
                                                     ));
                                           }
                                         } else {

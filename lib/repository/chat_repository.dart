@@ -1,4 +1,5 @@
 
+import 'package:localingo/enitity/answer.dart';
 import 'package:localingo/enitity/conversation.dart';
 import 'package:localingo/enitity/question.dart';
 
@@ -25,7 +26,10 @@ class ChatRepository {
       "language_type": languageType
     });
     if (response.statusCode == 200) {
-      return Question.fromJson(response.data);
+      Question question = Question.fromJson(response.data);
+      List<Answer> answers = List<Answer>.from(question.answers);
+      answers.shuffle();
+      return Question(question: question.question, answers: answers, explanation: question.explanation);
     } else {
       throw Exception(response.toString());
     }

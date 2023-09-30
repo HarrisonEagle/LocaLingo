@@ -41,8 +41,10 @@ ChatState useChatService(String languageType) {
               t.cancel();
               //nextElement.value = conversations.value[index.value];
             }else if(e.speaker == "B"){
-              nextElement.value = conversations.value[index.value];
-              text_index.value = 0;
+              if(index.value < conversations.value.length) {
+                nextElement.value = conversations.value[index.value];
+                text_index.value = 0;
+              }
               t.cancel();
             }
           }
@@ -80,7 +82,7 @@ ChatState useChatService(String languageType) {
 
   bool continueConversation(){
     score.value++;
-    if(index.value < conversations.value.length){
+    if(index.value + 1 < conversations.value.length ){
       nextElement.value = conversations.value[index.value];
       return true;
     }
