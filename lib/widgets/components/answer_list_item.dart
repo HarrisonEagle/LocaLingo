@@ -16,7 +16,7 @@ class AnswerListItemComponent extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
                 child: Container(
                   width: 190,
                   decoration: BoxDecoration(
@@ -25,7 +25,7 @@ class AnswerListItemComponent extends StatelessWidget {
                       boxShadow: const [
                         BoxShadow(
                           color: Color(0xffe6e6e6), //色
-                          spreadRadius: 5,
+                          spreadRadius: 4,
                           blurRadius: 5,
                           offset: Offset(1, 1),
                         ),
