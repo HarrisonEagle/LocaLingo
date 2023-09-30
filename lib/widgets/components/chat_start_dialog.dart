@@ -4,7 +4,8 @@ class ChatStartDialog extends StatelessWidget {
   final int id;
   final String languageType;
 
-  const ChatStartDialog({Key? key, required this.id, required this.languageType})
+  const ChatStartDialog(
+      {Key? key, required this.id, required this.languageType})
       : super(key: key);
 
   @override

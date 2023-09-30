@@ -14,20 +14,25 @@ ChatState useChatService(String languageType) {
     final messages = await chatRepository.continueConversation(chats.value);
     chats.value = [...chats.value, ...messages];
   }
-  
-  Future<void> initConversation() async{
+
+  Future<void> initConversation() async {
     final messages = await chatRepository.getInitConversation();
     chats.value = [...chats.value, ...messages];
     await continueConversation();
   }
 
-
-  return ChatState(chats: chats.value, addMessage: addMessage, initConversation: initConversation);
+  return ChatState(
+      chats: chats.value,
+      addMessage: addMessage,
+      initConversation: initConversation);
 }
 
 class ChatState {
   final List<Conversation> chats;
   final void Function(String text) addMessage;
   Future<void> Function() initConversation;
-  ChatState({required this.chats, required this.addMessage, required this.initConversation});
+  ChatState(
+      {required this.chats,
+      required this.addMessage,
+      required this.initConversation});
 }

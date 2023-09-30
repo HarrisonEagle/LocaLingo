@@ -17,7 +17,7 @@ class MainPage extends StatelessWidget {
           children: <Widget>[
             const Text(
               'Localingo',
-              style:  TextStyle(fontSize: 36),
+              style: TextStyle(fontSize: 36),
             ),
             const SizedBox(
               height: 350,
@@ -41,7 +41,7 @@ class MainPage extends StatelessWidget {
             ),
           ],
         ),
-      ),// This trailing comma makes auto-formatting nicer for build methods.
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

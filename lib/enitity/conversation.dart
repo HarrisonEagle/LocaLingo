@@ -9,5 +9,6 @@ class Conversation with _$Conversation {
   const factory Conversation(
       {required String speaker, required String message}) = _Conversation;
 
-  factory Conversation.fromJson(Map<String, dynamic> json) =>_$ConversationFromJson(json);
+  factory Conversation.fromJson(Map<String, dynamic> json) =>
+      _$ConversationFromJson(json);
 }

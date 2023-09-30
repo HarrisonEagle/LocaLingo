@@ -7,7 +7,10 @@ part 'quiz.g.dart';
 @freezed
 class Quiz with _$Quiz {
   const factory Quiz(
-      {required int id, required String languageType, required int highscore, required String imagePath}) = _Quiz;
+      {required int id,
+      required String languageType,
+      required int highscore,
+      required String imagePath}) = _Quiz;
 
-  factory Quiz.fromJson(Map<String, dynamic> json) =>_$QuizFromJson(json);
+  factory Quiz.fromJson(Map<String, dynamic> json) => _$QuizFromJson(json);
 }

@@ -4,12 +4,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:localingo/widgets/router.dart';
 
-Future main() async{
+Future main() async {
   await dotenv.load(fileName: '.env');
   final openApiKey = dotenv.env['OPEN_AI_API_KEY'];
-  if(openApiKey != null){
+  if (openApiKey != null) {
     OpenAI.apiKey = openApiKey;
-  }else{
+  } else {
     throw Exception(["open api key is not setted!"]);
   }
 

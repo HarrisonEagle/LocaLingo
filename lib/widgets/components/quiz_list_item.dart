@@ -6,10 +6,7 @@ import '../../enitity/quiz.dart';
 class QuizListItemComponent extends StatelessWidget {
   final Quiz quiz;
 
-  const QuizListItemComponent(
-      {Key? key,
-      required this.quiz})
-      : super(key: key);
+  const QuizListItemComponent({Key? key, required this.quiz}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +31,8 @@ class QuizListItemComponent extends StatelessWidget {
           onTap: () async {
             await showDialog(
                 context: context,
-                builder: (_) => ChatStartDialog(id: quiz.id, languageType: quiz.languageType));
+                builder: (_) => ChatStartDialog(
+                    id: quiz.id, languageType: quiz.languageType));
           },
           onLongPress: () => {}),
     );

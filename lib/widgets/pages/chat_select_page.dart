@@ -7,9 +7,24 @@ import '../components/quiz_list_item.dart';
 class ChatSelectPage extends StatelessWidget {
   ChatSelectPage({super.key});
   final quizzes = [
-    const Quiz(id: 1, languageType: "関西弁", highscore: 0, imagePath: "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
-    const Quiz(id: 2, languageType: "名古屋弁", highscore: 0, imagePath: "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
-    const Quiz(id: 3, languageType: "アイヌ語", highscore: 0, imagePath: "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
+    const Quiz(
+        id: 1,
+        languageType: "関西弁",
+        highscore: 0,
+        imagePath:
+            "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
+    const Quiz(
+        id: 2,
+        languageType: "名古屋弁",
+        highscore: 0,
+        imagePath:
+            "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
+    const Quiz(
+        id: 3,
+        languageType: "アイヌ語",
+        highscore: 0,
+        imagePath:
+            "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
   ];
 
   @override
@@ -34,7 +49,8 @@ class ChatSelectPage extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   itemBuilder: (BuildContext context, int index) {
                     return QuizListItemComponent(
-                        quiz: quizzes[index],);
+                      quiz: quizzes[index],
+                    );
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return const SizedBox(height: 20);
@@ -60,7 +76,7 @@ class ChatSelectPage extends StatelessWidget {
             ),
           ],
         ),
-      ),// This trailing comma makes auto-formatting nicer for build methods.
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

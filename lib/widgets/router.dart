@@ -25,11 +25,14 @@ class AppRouter extends ConsumerWidget {
         ),
       ),
       initialRoute: '/main',
-      routes: <String, WidgetBuilder> {
+      routes: <String, WidgetBuilder>{
         '/main': (BuildContext context) => const MainPage(),
-        '/chats/関西弁': (BuildContext context) => const ChatPage(languageType: "関西弁"),
-        '/chats/アイヌ語': (BuildContext context) => const ChatPage(languageType: "アイヌ語"),
-        '/chats/名古屋弁': (BuildContext context) => const ChatPage(languageType: "名古屋弁"),
+        '/chats/関西弁': (BuildContext context) =>
+            const ChatPage(languageType: "関西弁"),
+        '/chats/アイヌ語': (BuildContext context) =>
+            const ChatPage(languageType: "アイヌ語"),
+        '/chats/名古屋弁': (BuildContext context) =>
+            const ChatPage(languageType: "名古屋弁"),
         '/chats': (BuildContext context) => ChatSelectPage(),
       },
     );

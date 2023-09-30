@@ -5,15 +5,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../services/chat_service.dart';
 
-class ChatPage extends HookWidget{
-
+class ChatPage extends HookWidget {
   final String languageType;
   const ChatPage({super.key, required this.languageType});
   @override
   Widget build(BuildContext context) {
     final chatService = useChatService(languageType);
 
-    useEffect((){
+    useEffect(() {
       chatService.initConversation();
     }, []);
     return Scaffold(
@@ -33,7 +32,7 @@ class ChatPage extends HookWidget{
             ),
           ],
         ),
-      ),// This trailing comma makes auto-formatting nicer for build methods.
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
