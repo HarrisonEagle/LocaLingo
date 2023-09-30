@@ -12,7 +12,7 @@ class QuizAllCorrectDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: const Text('おめでとうございます！\n全問正解です！'),
+      content: Text('おめでとうございます！\n全$score問正解です！'),
       actions: <Widget>[
         GestureDetector(
           child: const Text(
