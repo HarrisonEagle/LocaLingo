@@ -10,9 +10,11 @@ _$ChatImpl _$$ChatImplFromJson(Map<String, dynamic> json) => _$ChatImpl(
       conversations: (json['conversations'] as List<dynamic>)
           .map((e) => Conversation.fromJson(e as Map<String, dynamic>))
           .toList(),
+      score: json['score'] as int,
     );
 
 Map<String, dynamic> _$$ChatImplToJson(_$ChatImpl instance) =>
     <String, dynamic>{
       'conversations': instance.conversations,
+      'score': instance.score,
     };
