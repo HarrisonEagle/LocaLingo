@@ -64,7 +64,7 @@ class ChatPage extends HookWidget {
                         imagePath: imagePath,
                         element: chatElements[index],
                         languageType: languageType,
-                      ),
+                        score: chatService.score),
                     ),
                   )),
             ),

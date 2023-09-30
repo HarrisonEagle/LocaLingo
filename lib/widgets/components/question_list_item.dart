@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:localingo/widgets/components/quiz_all_correct_dialog.dart';
+import 'package:localingo/widgets/components/quiz_failed_dialog.dart';
 
 import '../../enitity/question.dart';
 import 'answer_list_item.dart';
@@ -6,9 +8,13 @@ import 'answer_list_item.dart';
 class QuestionListItemComponent extends StatelessWidget {
   final Question question;
   final String languageType;
+  final int score;
 
   const QuestionListItemComponent(
-      {Key? key, required this.question, required this.languageType})
+      {Key? key,
+      required this.question,
+      required this.languageType,
+      required this.score})
       : super(key: key);
 
   @override
@@ -23,7 +29,7 @@ class QuestionListItemComponent extends StatelessWidget {
                 child: Container(
                   width: 225,
                   decoration: BoxDecoration(
-                      color: Color(0xfff0f8ff),
+                      color: const Color(0xfff0f8ff),
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: const [
                         BoxShadow(
@@ -62,9 +68,26 @@ class QuestionListItemComponent extends StatelessWidget {
                                 textColor: Colors.black,
                                 title: AnswerListItemComponent(
                                     answer: question.answers[index]),
-                                onTap: () {
+                                onTap: () async {
                                   if (question.answers[index].correct) {
-                                  } else {}
+                                    if (score == 2) {
+                                      await showDialog(
+                                          context: context,
+                                          builder: (_) => QuizAllCorrectDialog(
+                                                question: question,
+                                                score: score,
+                                              ));
+                                    } else {
+                                      // TODO 次の問題を出す処理
+                                    }
+                                  } else {
+                                    await showDialog(
+                                        context: context,
+                                        builder: (_) => QuizFailedDialog(
+                                              question: question,
+                                              score: score,
+                                            ));
+                                  }
                                 },
                               ),
                               shrinkWrap: true,
