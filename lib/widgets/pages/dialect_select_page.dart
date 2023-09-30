@@ -26,27 +26,12 @@ class DialectSelectPage extends StatelessWidget {
                 child: ListView.separated(
                   padding: const EdgeInsets.all(5),
                   itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      width: 300,
-                      height: 85,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0xffd6d6d6), //色
-                              spreadRadius: 5,
-                              blurRadius: 5,
-                              offset: Offset(1, 1),
-                            ),
-                          ]
-                      ),
-                      child: QuizListItemComponent(
-                          title: "関西弁",
-                          subTitle: "最高6回連続",
-                          leading: Image.network("https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png")
-                      ),
-                    );
+                    return QuizListItemComponent(
+                        id: 1,
+                        title: "関西弁",
+                        subTitle: "最高6回連続",
+                        leading: Image.network(
+                            "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"));
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return const SizedBox(height: 20);
