@@ -51,53 +51,61 @@ class ChatSelectPage extends StatelessWidget {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: const CommonHeader(automaticallyImplyLeading: false),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 40, 20, 40),
-              child: SizedBox(
-                height: 525,
-                child: ListView.separated(
-                  padding: const EdgeInsets.all(5),
-                  itemBuilder: (BuildContext context, int index) {
-                    return QuizListItemComponent(
-                      quiz: quizzes[index],
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return const SizedBox(height: 20);
-                  },
-                  itemCount: quizzes.length,
-                ),
-              ),
-            ),
-            SizedBox(
-              width: 300,
-              height: 50,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+              image: const AssetImage('assets/select.png'),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
+            )),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 60, 20, 40),
+                child: SizedBox(
+                  height: 525,
+                  child: ListView.separated(
+                    padding: const EdgeInsets.all(5),
+                    itemBuilder: (BuildContext context, int index) {
+                      return QuizListItemComponent(
+                        quiz: quizzes[index],
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const SizedBox(height: 20);
+                    },
+                    itemCount: quizzes.length,
                   ),
                 ),
-                onPressed: () async {
-                  Quiz quiz = quizzes[Random().nextInt(quizzes.length)];
-                  await showDialog(
-                      context: context,
-                      builder: (_) => ChatStartDialog(
-                            id: quiz.id,
-                            languageType: quiz.languageType,
-                            imagePath: quiz.imagePath,
-                          ));
-                },
-                child: const Text('Random'),
               ),
-            ),
-          ],
+              SizedBox(
+                width: 300,
+                height: 50,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  onPressed: () async {
+                    Quiz quiz = quizzes[Random().nextInt(quizzes.length)];
+                    await showDialog(
+                        context: context,
+                        builder: (_) => ChatStartDialog(
+                          id: quiz.id,
+                          languageType: quiz.languageType,
+                          imagePath: quiz.imagePath,
+                        ));
+                  },
+                  child: const Text('ランダム選択', style: TextStyle(fontSize: 20),),
+                ),
+              ),
+            ],
+          ),
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

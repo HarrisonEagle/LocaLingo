@@ -70,6 +70,19 @@ flutter:
 
   assets:
     - .env
+    - assets/ainu.png
+    - assets/home.png
+    - assets/kagoshima.png
+    - assets/kansai.png
+    - assets/nagoya.png
+    - assets/select.png
+    - assets/tsugaru.png
+    - assets/ainu_icon.png
+    - assets/kagoshima_icon.png
+    - assets/kansai_icon.png
+    - assets/nagoya_icon.png
+    - assets/tsugaru_icon.png
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localingo/utils/assets.dart';
 import 'package:localingo/widgets/components/chat_start_dialog.dart';
 
 import '../../enitity/quiz.dart';
@@ -27,7 +28,10 @@ class QuizListItemComponent extends StatelessWidget {
       child: ListTile(
           title: Text(quiz.languageType),
           subtitle: Text('最高${quiz.highscore}回連続'),
-          leading: Image.network(quiz.imagePath),
+          leading: CircleAvatar(
+            radius: 48, // Image radius
+            backgroundImage: Image.asset(assets[quiz.languageType]!["icon"]!, fit: BoxFit.fill).image,
+          ),
           onTap: () async {
             await showDialog(
                 context: context,

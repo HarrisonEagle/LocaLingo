@@ -23,7 +23,10 @@ class ChatListItemAComponent extends StatelessWidget {
                 SizedBox(
                   width: 50,
                   height: 50,
-                  child: Image.network(imagePath),
+                  child: CircleAvatar(
+                    radius: 48, // Image radius
+                    backgroundImage: Image.asset(imagePath, fit: BoxFit.fill).image,
+                  ),
                 )
               ],
             ),
