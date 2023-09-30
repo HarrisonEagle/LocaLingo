@@ -3,7 +3,6 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:localingo/widgets/components/chat_header.dart';
-import 'package:localingo/widgets/components/chat_list_item_a.dart';
 
 import '../../services/chat_service.dart';
 
@@ -13,7 +12,6 @@ class ChatPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final chatService = useChatService(languageType);
-    final String imagePath = ModalRoute.of(context)!.settings.arguments as String;
 
     useEffect(() {
       chatService.initConversation();
@@ -29,10 +27,7 @@ class ChatPage extends HookWidget {
                 itemCount: chatService.chats.length,
                 itemBuilder: (context, index) => ListTile(
                   textColor: Colors.black,
-                  title: ChatListItemAComponent(
-                      imagePath: imagePath,
-                      conversation: chatService.chats[index]
-                  ),
+                  title: Text(chatService.chats[index].message),
                 ),
               ),
             ),
