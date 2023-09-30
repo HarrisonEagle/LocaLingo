@@ -7,7 +7,11 @@ part 'question.g.dart';
 
 @freezed
 class Question with _$Question implements ChatElement {
-  const factory Question({required String question, required List<Answer> answers, required String explanation}) = _Question;
+  const factory Question(
+      {required String question,
+      required List<Answer> answers,
+      required String explanation}) = _Question;
 
-  factory Question.fromJson(Map<String, dynamic> json) => _$QuestionFromJson(json);
+  factory Question.fromJson(Map<String, dynamic> json) =>
+      _$QuestionFromJson(json);
 }

@@ -33,6 +33,10 @@ class AppRouter extends ConsumerWidget {
             const ChatPage(languageType: "アイヌ語"),
         '/chats/名古屋弁': (BuildContext context) =>
             const ChatPage(languageType: "名古屋弁"),
+        '/chats/鹿児島弁': (BuildContext context) =>
+        const ChatPage(languageType: "鹿児島弁"),
+        '/chats/津軽弁': (BuildContext context) =>
+        const ChatPage(languageType: "津軽弁"),
         '/chats': (BuildContext context) => ChatSelectPage(),
       },
     );

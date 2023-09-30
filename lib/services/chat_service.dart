@@ -78,9 +78,13 @@ ChatState useChatService(String languageType) {
     nextElement.value = conversations.value[index.value];
   }
 
-  void continueConversation(){
+  bool continueConversation(){
     score.value++;
-    nextElement.value = conversations.value[index.value];
+    if(index.value < conversations.value.length){
+      nextElement.value = conversations.value[index.value];
+      return true;
+    }
+   return false;
   }
 
   return ChatState(
@@ -96,7 +100,7 @@ class ChatState {
   final int score;
   final void Function(String text) addMessage;
   Future<void> Function() initConversation;
-  final void Function() continueConversation;
+  final bool Function() continueConversation;
   ChatState(
       {required this.chats,
       required this.score,

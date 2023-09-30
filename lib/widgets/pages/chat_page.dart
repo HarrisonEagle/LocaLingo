@@ -17,7 +17,7 @@ class ChatPage extends HookWidget {
     final chatService = useChatService(languageType);
     final String imagePath =
         ModalRoute.of(context)!.settings.arguments as String;
-    final _scrollController = ScrollController();
+
 
     useEffect(() {
       chatService.initConversation();
@@ -45,6 +45,7 @@ class ChatPage extends HookWidget {
                         languageType: languageType,
                         clickable: index == 0,
                         continueConversation: chatService.continueConversation,
+                        score: chatService.score
                       ),
                     );}
                   )),
