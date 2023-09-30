@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:localingo/enitity/quiz.dart';
 import 'package:localingo/widgets/components/common_header.dart';
 
+import '../components/chat_start_dialog.dart';
 import '../components/quiz_list_item.dart';
+import 'dart:math';
 
 class ChatSelectPage extends StatelessWidget {
   ChatSelectPage({super.key});
@@ -56,7 +58,7 @@ class ChatSelectPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 40, 20, 40),
               child: SizedBox(
-                height: 600,
+                height: 525,
                 child: ListView.separated(
                   padding: const EdgeInsets.all(5),
                   itemBuilder: (BuildContext context, int index) {
@@ -82,7 +84,16 @@ class ChatSelectPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  Quiz quiz = quizzes[Random().nextInt(quizzes.length)];
+                  await showDialog(
+                      context: context,
+                      builder: (_) => ChatStartDialog(
+                        id: quiz.id,
+                        languageType: quiz.languageType,
+                        imagePath: quiz.imagePath,
+                      ));
+                },
                 child: const Text('Random'),
               ),
             ),
