@@ -28,6 +28,7 @@ class ChatStartDialog extends StatelessWidget {
             style: TextStyle(color: Colors.lightBlueAccent),
           ),
           onTap: () {
+            Navigator.pop(context);
             Navigator.of(context).pushNamed("/chats/$languageType");
           },
         )
