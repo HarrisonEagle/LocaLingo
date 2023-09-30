@@ -9,7 +9,7 @@ import 'package:localingo/ui_models/chat_element.dart';
 import 'package:localingo/widgets/components/chat_header.dart';
 
 import '../../services/chat_service.dart';
-import '../components/chat_list_item.dart';
+import '../components/chat_element_list_item.dart';
 
 class ChatPage extends HookWidget {
   final String languageType;
@@ -62,9 +62,9 @@ class ChatPage extends HookWidget {
                     itemCount: chatService.chats.length,
                     itemBuilder: (context, index) => ListTile(
                       textColor: Colors.black,
-                      title: ChatListItemComponent(
+                      title: ChatElementListItemComponent(
                           imagePath: imagePath,
-                          conversation: chatService.chats[index]),
+                          element: chatService.chats[index]),
                     ),
                   )),
             ),
