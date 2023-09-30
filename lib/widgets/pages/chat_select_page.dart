@@ -24,13 +24,13 @@ class ChatSelectPage extends StatelessWidget {
         languageType: "鹿児島弁",
         highscore: 0,
         imagePath:
-        "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
+            "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
     const Quiz(
         id: 4,
         languageType: "アイヌ語",
         highscore: 0,
         imagePath:
-        "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
+            "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
     const Quiz(
         id: 5,
         languageType: "津軽弁",

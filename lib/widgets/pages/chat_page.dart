@@ -27,8 +27,7 @@ class ChatPage extends HookWidget {
             Answer(answer: "かきくけこ", correct: false),
             Answer(answer: "最周世そあ", correct: false),
           ],
-          explanation: "時間を答えています。"
-      ),
+          explanation: "時間を答えています。"),
       const Conversation(speaker: "B", message: "こんばんは！今1時30分だよ！"),
       const Conversation(speaker: "A", message: "こんばんは！今何時？"),
       const Question(
@@ -39,8 +38,7 @@ class ChatPage extends HookWidget {
             Answer(answer: "かきくけこ", correct: false),
             Answer(answer: "最周世そあ", correct: false),
           ],
-          explanation: "時間を答えています。"
-      ),
+          explanation: "時間を答えています。"),
       const Conversation(speaker: "B", message: "こんばんは！今1時30分だよ！"),
     ];
 
@@ -61,10 +59,10 @@ class ChatPage extends HookWidget {
                     itemBuilder: (context, index) => ListTile(
                       textColor: Colors.black,
                       title: ChatElementListItemComponent(
-                        imagePath: imagePath,
-                        element: chatElements[index],
-                        languageType: languageType,
-                        score: chatService.score),
+                          imagePath: imagePath,
+                          element: chatElements[index],
+                          languageType: languageType,
+                          score: chatService.score),
                     ),
                   )),
             ),
