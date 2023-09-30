@@ -16,7 +16,28 @@ class MainPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'Localingo',
+              style:  TextStyle(fontSize: 36),
+            ),
+            const SizedBox(
+              height: 350,
+            ),
+            SizedBox(
+              width: 350,
+              height: 50,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/dialects");
+                },
+                child: const Text('Start'),
+              ),
             ),
           ],
         ),
