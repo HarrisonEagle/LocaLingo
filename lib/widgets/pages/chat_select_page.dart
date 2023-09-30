@@ -89,10 +89,10 @@ class ChatSelectPage extends StatelessWidget {
                   await showDialog(
                       context: context,
                       builder: (_) => ChatStartDialog(
-                        id: quiz.id,
-                        languageType: quiz.languageType,
-                        imagePath: quiz.imagePath,
-                      ));
+                            id: quiz.id,
+                            languageType: quiz.languageType,
+                            imagePath: quiz.imagePath,
+                          ));
                 },
                 child: const Text('Random'),
               ),
