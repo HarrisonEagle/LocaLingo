@@ -12,17 +12,10 @@ ChatState useChatService(String languageType) {
     score.value = score.value + 1;
   }
 
-  Future<void> continueConversation() async {
-    final messages = await chatRepository.continueConversation(chats.value);
-    chats.value = [...chats.value, ...messages];
-    score.value = score.value + 1;
-  }
-
   Future<void> initConversation() async {
-    final messages = await chatRepository.getInitConversation();
+    final messages = await chatRepository.getConversations();
     chats.value = [...chats.value, ...messages];
     score.value = score.value + 1;
-    await continueConversation();
   }
 
   return ChatState(
