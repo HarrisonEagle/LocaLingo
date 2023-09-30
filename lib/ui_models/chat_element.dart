@@ -1,2 +1,1 @@
-class ChatElement {
-}
+class ChatElement {}

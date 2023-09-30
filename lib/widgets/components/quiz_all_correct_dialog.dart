@@ -12,12 +12,15 @@ class QuizAllCorrectDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Text('おめでとうございます！\n全$score問正解です！'),
+      content: Text(
+        'おめでとうございます！\n全$score問正解です！',
+        style: const TextStyle(fontSize: 20),
+      ),
       actions: <Widget>[
         GestureDetector(
           child: const Text(
             'はい',
-            style: TextStyle(color: Colors.lightBlueAccent),
+            style: TextStyle(color: Colors.lightBlueAccent, fontSize: 16),
           ),
           onTap: () {
             Navigator.pop(context);

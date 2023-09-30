@@ -14,12 +14,14 @@ class QuizFailedDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       content: Text(
-          '残念！\n正解は「${question.answers.where((Answer answer) => answer.correct).toList()[0].answer}」です！\nあなたの正当数は$scoreでした。'),
+        '残念！\n正解は「${question.answers.where((Answer answer) => answer.correct).toList()[0].answer}」です！\nあなたの正当数は$scoreでした。',
+        style: const TextStyle(fontSize: 20),
+      ),
       actions: <Widget>[
         GestureDetector(
           child: const Text(
             'はい',
-            style: TextStyle(color: Colors.lightBlueAccent),
+            style: TextStyle(color: Colors.lightBlueAccent, fontSize: 16),
           ),
           onTap: () {
             Navigator.pop(context);
