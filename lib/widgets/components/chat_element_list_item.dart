@@ -21,8 +21,7 @@ class ChatElementListItemComponent extends StatelessWidget {
       required this.languageType,
       required this.continueConversation,
       required this.clickable,
-      required this.score
-})
+      required this.score})
       : super(key: key);
 
   @override
@@ -32,8 +31,11 @@ class ChatElementListItemComponent extends StatelessWidget {
           imagePath: imagePath, conversation: element as Conversation);
     } else {
       return QuestionListItemComponent(
-          question: element as Question, languageType: languageType, continueConversation: continueConversation, clickable: clickable, score: score);
-
+          question: element as Question,
+          languageType: languageType,
+          continueConversation: continueConversation,
+          clickable: clickable,
+          score: score);
     }
   }
 }

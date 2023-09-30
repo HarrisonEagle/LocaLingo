@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:localingo/widgets/components/quiz_all_correct_dialog.dart';
 import 'package:localingo/widgets/components/quiz_failed_dialog.dart';
 
 import '../../enitity/question.dart';
 import 'answer_list_item.dart';
 
-class QuestionListItemComponent extends StatelessWidget {
+class QuestionListItemComponent extends HookWidget {
   final Question question;
   final String languageType;
   final bool Function() continueConversation;
   final bool clickable;
   final int score;
 
-  const QuestionListItemComponent(
-      {Key? key, required this.question, required this.languageType, required this.continueConversation, required this.clickable, required this.score})
+  QuestionListItemComponent(
+      {Key? key,
+      required this.question,
+      required this.languageType,
+      required this.continueConversation,
+      required this.clickable,
+      required this.score})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    final wrongAnswer = useState<String>("");
     return Padding(
         padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
         child: Row(
@@ -65,27 +73,34 @@ class QuestionListItemComponent extends StatelessWidget {
                               itemBuilder: (context, index) => ListTile(
                                 textColor: Colors.black,
                                 title: AnswerListItemComponent(
-                                    answer: question.answers[index]),
-
-                                onTap: this.clickable ? () async {
-                                  if (question.answers[index].correct) {
-                                    if (!continueConversation()) {
-                                      await showDialog(
-                                          context: context,
-                                          builder: (_) => QuizAllCorrectDialog(
-                                                question: question,
-                                                score: score,
-                                              ));
-                                    }
-                                  } else {
-                                    await showDialog(
-                                        context: context,
-                                        builder: (_) => QuizFailedDialog(
-                                              question: question,
-                                              score: score,
-                                            ));
-                                  }
-                                } : null,
+                                  answer: question.answers[index],
+                                  clickable: clickable,
+                                  wrongAnswer: wrongAnswer.value,
+                                ),
+                                onTap: clickable
+                                    ? () async {
+                                        if (question.answers[index].correct) {
+                                          if (!continueConversation()) {
+                                            await showDialog(
+                                                context: context,
+                                                builder: (_) =>
+                                                    QuizAllCorrectDialog(
+                                                      question: question,
+                                                      score: score + 1,
+                                                    ));
+                                          }
+                                        } else {
+                                          wrongAnswer.value =
+                                              question.answers[index].answer;
+                                          await showDialog(
+                                              context: context,
+                                              builder: (_) => QuizFailedDialog(
+                                                    question: question,
+                                                    score: score,
+                                                  ));
+                                        }
+                                      }
+                                    : null,
                               ),
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),

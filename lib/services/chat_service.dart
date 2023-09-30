@@ -19,48 +19,73 @@ ChatState useChatService(String languageType) {
   final chatRepository = ChatRepository(languageType: languageType);
 
   useEffect(() {
-    if(nextElement.value != null){
+    if (nextElement.value != null) {
       final currentChats = [...chats.value];
       final e = nextElement.value;
-      final timer = Timer.periodic(const Duration(milliseconds: 50), (Timer t) {
-        if(e is Conversation){
-          if (text_index.value < e.message.length) {
-            if(text_index.value == 0){
-              index.value++;
-              if(e.speaker == "A") {
-                nextQuestionElement.value = null;
-                chatRepository.generateQuestion(conversations.value[index.value].message).then((value) => nextQuestionElement.value = value);
+      final timer = Timer.periodic(
+        const Duration(milliseconds: 50),
+        (Timer t) {
+          if (e is Conversation) {
+            if (text_index.value < e.message.length) {
+              if (text_index.value == 0) {
+                index.value++;
+                if (e.speaker == "A") {
+                  nextQuestionElement.value = null;
+                  chatRepository
+                      .generateQuestion(
+                          conversations.value[index.value].message)
+                      .then((value) => nextQuestionElement.value = value);
+                }
+              }
+              text_index.value++;
+              chats.value = [
+                ...currentChats,
+                Conversation(
+                    speaker: e.speaker,
+                    message: e.message.substring(0, text_index.value))
+              ];
+            } else {
+              if (e.speaker == "A" && nextQuestionElement.value != null) {
+                nextElement.value = nextQuestionElement.value;
+                text_index.value = 0;
+                t.cancel();
+                //nextElement.value = conversations.value[index.value];
+              } else if (e.speaker == "B") {
+                if (index.value < conversations.value.length) {
+                  nextElement.value = conversations.value[index.value];
+                  text_index.value = 0;
+                }
+                t.cancel();
               }
             }
-            text_index.value++;
-            chats.value = [...currentChats, Conversation(speaker: e.speaker, message:e.message.substring(0, text_index.value))];
-          } else {
-            if(e.speaker == "A" && nextQuestionElement.value != null){
-              nextElement.value = nextQuestionElement.value;
+          } else if (e is Question) {
+            if (text_index.value < e.question.length) {
+              text_index.value++;
+              print(e.question.substring(0, text_index.value));
+              chats.value = [
+                ...currentChats,
+                Question(
+                    question: e.question.substring(0, text_index.value),
+                    answers: [],
+                    explanation: e.explanation)
+              ];
+            } else if (question_index.value < 4) {
+              question_index.value++;
+              chats.value = [
+                ...currentChats,
+                Question(
+                    question: e.question,
+                    answers: [...e.answers.sublist(0, question_index.value)],
+                    explanation: e.explanation)
+              ];
+            } else {
               text_index.value = 0;
-              t.cancel();
-              //nextElement.value = conversations.value[index.value];
-            }else if(e.speaker == "B"){
-              nextElement.value = conversations.value[index.value];
-              text_index.value = 0;
+              question_index.value = 0;
               t.cancel();
             }
           }
-        }else if(e is Question){
-          if (text_index.value < e.question.length) {
-            text_index.value++;
-            print(e.question.substring(0, text_index.value));
-            chats.value = [...currentChats, Question(question: e.question.substring(0, text_index.value), answers: [], explanation: e.explanation)];
-          }else if(question_index.value < 4){
-            question_index.value++;
-            chats.value = [...currentChats, Question(question: e.question, answers: [...e.answers.sublist(0,question_index.value)], explanation: e.explanation)];
-          }else{
-            text_index.value = 0;
-            question_index.value = 0;
-            t.cancel();
-          }
-        }
-      },);
+        },
+      );
 
       return () {
         timer.cancel();
@@ -78,13 +103,13 @@ ChatState useChatService(String languageType) {
     nextElement.value = conversations.value[index.value];
   }
 
-  bool continueConversation(){
+  bool continueConversation() {
     score.value++;
-    if(index.value < conversations.value.length){
+    if (index.value + 1 < conversations.value.length) {
       nextElement.value = conversations.value[index.value];
       return true;
     }
-   return false;
+    return false;
   }
 
   return ChatState(
