@@ -4,8 +4,14 @@ import '../../enitity/answer.dart';
 
 class AnswerListItemComponent extends StatelessWidget {
   final Answer answer;
+  final bool clickable;
+  final String wrongAnswer;
 
-  const AnswerListItemComponent({Key? key, required this.answer})
+  const AnswerListItemComponent(
+      {Key? key,
+      required this.answer,
+      required this.clickable,
+      required this.wrongAnswer})
       : super(key: key);
 
   @override
@@ -20,7 +26,15 @@ class AnswerListItemComponent extends StatelessWidget {
                 child: Container(
                   width: 190,
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: clickable
+                          ? (wrongAnswer == ''
+                              ? Colors.white
+                              : answer.answer == wrongAnswer
+                                  ? Colors.red
+                                  : const Color(0xffe6e6e6))
+                          : (answer.correct
+                              ? const Color(0x997cfc00)
+                              : const Color(0xffe6e6e6)),
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: const [
                         BoxShadow(
