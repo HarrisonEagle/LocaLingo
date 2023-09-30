@@ -17,32 +17,7 @@ class ChatPage extends HookWidget {
     final chatService = useChatService(languageType);
     final String imagePath =
         ModalRoute.of(context)!.settings.arguments as String;
-    final List<ChatElement> chatElements = [
-      const Conversation(speaker: "A", message: "こんばんは！今何時？"),
-      const Question(
-          question: "こんばんは！今何時？",
-          answers: [
-            Answer(answer: "こんばんは！今1時30分だよ！", correct: true),
-            Answer(answer: "あいうえお", correct: false),
-            Answer(answer: "かきくけこ", correct: false),
-            Answer(answer: "最周世そあ", correct: false),
-          ],
-          explanation: "時間を答えています。"
-      ),
-      const Conversation(speaker: "B", message: "こんばんは！今1時30分だよ！"),
-      const Conversation(speaker: "A", message: "こんばんは！今何時？"),
-      const Question(
-          question: "こんばんは！今何時？",
-          answers: [
-            Answer(answer: "こんばんは！今1時30分だよ！", correct: true),
-            Answer(answer: "あいうえお", correct: false),
-            Answer(answer: "かきくけこ", correct: false),
-            Answer(answer: "最周世そあ", correct: false),
-          ],
-          explanation: "時間を答えています。"
-      ),
-      const Conversation(speaker: "B", message: "こんばんは！今1時30分だよ！"),
-    ];
+    final _scrollController = ScrollController();
 
     useEffect(() {
       chatService.initConversation();
@@ -57,15 +32,21 @@ class ChatPage extends HookWidget {
               child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: ListView.builder(
-                    itemCount: chatElements.length,
-                    itemBuilder: (context, index) => ListTile(
+                    reverse: true,
+                    itemCount: chatService.chats.length,
+                    itemBuilder: (context, index) {
+                      final reversedIndex = chatService.chats.length - 1 - index;
+                      final element = chatService.chats[reversedIndex];
+                      return ListTile(
                       textColor: Colors.black,
                       title: ChatElementListItemComponent(
                         imagePath: imagePath,
-                        element: chatElements[index],
+                        element: element,
                         languageType: languageType,
+                        clickable: index == 0,
+                        continueConversation: chatService.continueConversation,
                       ),
-                    ),
+                    );}
                   )),
             ),
           ],

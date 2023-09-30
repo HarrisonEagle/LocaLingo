@@ -10,12 +10,16 @@ class ChatElementListItemComponent extends StatelessWidget {
   final String imagePath;
   final ChatElement element;
   final String languageType;
+  final void Function() continueConversation;
+  final bool clickable;
 
   const ChatElementListItemComponent(
       {Key? key,
       required this.imagePath,
       required this.element,
-      required this.languageType})
+      required this.languageType,
+      required this.continueConversation,
+      required this.clickable})
       : super(key: key);
 
   @override
@@ -25,7 +29,7 @@ class ChatElementListItemComponent extends StatelessWidget {
           imagePath: imagePath, conversation: element as Conversation);
     } else {
       return QuestionListItemComponent(
-          question: element as Question, languageType: languageType);
+          question: element as Question, languageType: languageType, continueConversation: continueConversation, clickable: clickable,);
     }
   }
 }

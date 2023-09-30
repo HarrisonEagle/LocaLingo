@@ -6,9 +6,11 @@ import 'answer_list_item.dart';
 class QuestionListItemComponent extends StatelessWidget {
   final Question question;
   final String languageType;
+  final void Function() continueConversation;
+  final bool clickable;
 
   const QuestionListItemComponent(
-      {Key? key, required this.question, required this.languageType})
+      {Key? key, required this.question, required this.languageType, required this.continueConversation, required this.clickable})
       : super(key: key);
 
   @override
@@ -46,9 +48,9 @@ class QuestionListItemComponent extends StatelessWidget {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: Center(
-                            child: Text('Q. $languageTypeで返答しよう！'),
+                            child: Text('Q. ${question.question}'),
                           ),
                         ),
                       ),
@@ -62,10 +64,11 @@ class QuestionListItemComponent extends StatelessWidget {
                                 textColor: Colors.black,
                                 title: AnswerListItemComponent(
                                     answer: question.answers[index]),
-                                onTap: () {
+                                onTap: this.clickable ? () {
                                   if (question.answers[index].correct) {
+                                      continueConversation();
                                   } else {}
-                                },
+                                } : null,
                               ),
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),

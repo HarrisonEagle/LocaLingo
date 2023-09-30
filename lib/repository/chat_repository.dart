@@ -1,5 +1,6 @@
 
 import 'package:localingo/enitity/conversation.dart';
+import 'package:localingo/enitity/question.dart';
 
 import '../utils/api_client.dart';
 
@@ -14,8 +15,18 @@ class ChatRepository {
     if (response.statusCode == 200) {
       return List<Conversation>.from(response.data.map((element)=> Conversation.fromJson(element)));
     } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
+      throw Exception(response.toString());
+    }
+  }
+
+  Future<Question> generateQuestion(String message) async {
+    final response = await apiClient.post("question", {
+      "message": message,
+      "language_type": languageType
+    });
+    if (response.statusCode == 200) {
+      return Question.fromJson(response.data);
+    } else {
       throw Exception(response.toString());
     }
   }
