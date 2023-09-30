@@ -18,6 +18,8 @@ class ChatPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final chatService = useChatService(languageType);
+    final String imagePath =
+        ModalRoute.of(context)!.settings.arguments as String;
 
     useEffect(() {
       chatService.initConversation();
