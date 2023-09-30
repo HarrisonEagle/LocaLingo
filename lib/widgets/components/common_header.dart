@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Header extends StatelessWidget implements PreferredSizeWidget {
-  const Header({super.key, required this.automaticallyImplyLeading});
+class CommonHeader extends StatelessWidget implements PreferredSizeWidget {
+  const CommonHeader({super.key, required this.automaticallyImplyLeading});
   final bool automaticallyImplyLeading;
 
   @override

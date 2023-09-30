@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:localingo/enitity/quiz.dart';
-import 'package:localingo/widgets/components/header.dart';
+import 'package:localingo/widgets/components/common_header.dart';
 
 import '../components/quiz_list_item.dart';
 
@@ -36,7 +36,7 @@ class ChatSelectPage extends StatelessWidget {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: const Header(automaticallyImplyLeading: false),
+      appBar: const CommonHeader(automaticallyImplyLeading: false),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
