@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../ui_models/chat_element.dart';
+import 'chat_element.dart';
 import 'answer.dart';
 
 part 'question.freezed.dart';

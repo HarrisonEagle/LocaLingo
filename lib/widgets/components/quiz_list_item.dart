@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:localingo/utils/assets.dart';
 import 'package:localingo/widgets/components/chat_start_dialog.dart';
 
-import '../../enitity/quiz.dart';
+import '../../entities/quiz.dart';
 
 class QuizListItemComponent extends StatelessWidget {
   final Quiz quiz;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../enitity/answer.dart';
+import '../../entities/answer.dart';
 
 class AnswerListItemComponent extends StatelessWidget {
   final Answer answer;

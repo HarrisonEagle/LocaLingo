@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localingo/enitity/conversation.dart';
+import 'package:localingo/entities/conversation.dart';
 import 'package:localingo/widgets/components/chat_list_item_a.dart';
 import 'package:localingo/widgets/components/chat_list_item_b.dart';
 

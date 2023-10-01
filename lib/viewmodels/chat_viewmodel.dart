@@ -1,13 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:localingo/enitity/answer.dart';
-import 'package:localingo/enitity/conversation.dart';
-import 'package:localingo/enitity/question.dart';
-import 'package:localingo/repository/chat_repository.dart';
-import 'package:localingo/ui_models/chat_element.dart';
+import 'package:localingo/entities/conversation.dart';
+import 'package:localingo/entities/question.dart';
+import 'package:localingo/repositories/chat_repository.dart';
+import 'package:localingo/entities/chat_element.dart';
 
-ChatState useChatService(String languageType) {
+ChatViewModel useChatViewModel(String languageType, ChatRepository chatRepository) {
   final conversations = useState<List<Conversation>>([]);
   final chats = useState<List<ChatElement>>([]);
   final nextElement = useState<ChatElement?>(null);
@@ -16,7 +15,6 @@ ChatState useChatService(String languageType) {
   final text_index = useState<int>(0);
   final question_index = useState<int>(0);
   final score = useState<int>(0);
-  final chatRepository = ChatRepository(languageType: languageType);
 
   useEffect(() {
     if (nextElement.value != null) {
@@ -93,11 +91,6 @@ ChatState useChatService(String languageType) {
     }
   }, [nextElement.value]);
 
-  void addMessage(String text) {
-    chats.value = [...chats.value];
-    score.value = score.value + 1;
-  }
-
   Future<void> initConversation() async {
     conversations.value = await chatRepository.getConversations();
     nextElement.value = conversations.value[index.value];
@@ -112,24 +105,21 @@ ChatState useChatService(String languageType) {
     return false;
   }
 
-  return ChatState(
+  return ChatViewModel(
       chats: chats.value,
       score: score.value,
-      addMessage: addMessage,
       initConversation: initConversation,
       continueConversation: continueConversation);
 }
 
-class ChatState {
+class ChatViewModel {
   final List<ChatElement> chats;
   final int score;
-  final void Function(String text) addMessage;
   Future<void> Function() initConversation;
   final bool Function() continueConversation;
-  ChatState(
+  ChatViewModel(
       {required this.chats,
       required this.score,
-      required this.addMessage,
       required this.initConversation,
       required this.continueConversation});
 }

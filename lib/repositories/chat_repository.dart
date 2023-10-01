@@ -1,15 +1,22 @@
-import 'package:localingo/enitity/answer.dart';
-import 'package:localingo/enitity/conversation.dart';
-import 'package:localingo/enitity/question.dart';
+import 'package:localingo/entities/answer.dart';
+import 'package:localingo/entities/conversation.dart';
+import 'package:localingo/entities/question.dart';
 
 import '../utils/api_client.dart';
 
-class ChatRepository {
+abstract class ChatRepository {
+  Future<List<Conversation>> getConversations();
+  Future<Question> generateQuestion(String message);
+}
+
+
+class ChatRepositoryImpl implements ChatRepository {
   final String languageType;
   final APIClient apiClient = APIClient();
 
-  ChatRepository({required this.languageType});
+  ChatRepositoryImpl({required this.languageType});
 
+  @override
   Future<List<Conversation>> getConversations() async {
     final response = await apiClient.get("conversations/${languageType}");
     if (response.statusCode == 200) {
@@ -20,6 +27,7 @@ class ChatRepository {
     }
   }
 
+  @override
   Future<Question> generateQuestion(String message) async {
     final response = await apiClient
         .post("question", {"message": message, "language_type": languageType});
