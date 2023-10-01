@@ -26,29 +26,29 @@ class QuizFailedDialog extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            Align(
+            const Align(
                 alignment: Alignment.centerLeft,
-                child: Text('正解は:', style: const TextStyle(fontSize: 20))),
+                child: Text('正解は:', style: TextStyle(fontSize: 20))),
             Text(
               '「${question.answers.where((Answer answer) => answer.correct).toList()[0].answer}」',
               style: const TextStyle(fontSize: 35, fontWeight: FontWeight.w900, color: Colors.green),
             ),
-            Align(
+            const Align(
                 alignment: Alignment.centerRight,
-                child: Text('でした...', style: const TextStyle(fontSize: 20))),
+                child: Text('でした...', style: TextStyle(fontSize: 20))),
             const SizedBox(
               height: 30,
             ),
-            Align(
+            const Align(
                 alignment: Alignment.centerLeft,
-                child: Text('あなたの正答数は:', style: const TextStyle(fontSize: 20))),
+                child: Text('あなたの正答数は:', style: TextStyle(fontSize: 20))),
             Text(
               score.toString(),
               style: const TextStyle(fontSize: 50, fontWeight: FontWeight.w900, color: Colors.red),
             ),
-            Align(
+            const Align(
                 alignment: Alignment.centerRight,
-                child: Text('でした。', style: const TextStyle(fontSize: 20))),
+                child: Text('でした。', style: TextStyle(fontSize: 20))),
             const SizedBox(
               height: 30,
             ),
@@ -60,8 +60,7 @@ class QuizFailedDialog extends StatelessWidget {
                 elevation: 0,
               ),
               onPressed: () {
-                Navigator.pop(context);
-                Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, '/chats');
               },
               child: const Text(
                 '戻る',
