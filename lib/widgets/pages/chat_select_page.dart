@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localingo/enitity/quiz.dart';
+import 'package:localingo/entities/quiz.dart';
 import 'package:localingo/widgets/components/common_header.dart';
 
 import '../components/chat_start_dialog.dart';

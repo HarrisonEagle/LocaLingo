@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localingo/enitity/conversation.dart';
+import 'package:localingo/entities/conversation.dart';
 
 class ChatListItemBComponent extends StatelessWidget {
   final Conversation conversation;

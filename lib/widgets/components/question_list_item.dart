@@ -3,13 +3,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:localingo/widgets/components/quiz_all_correct_dialog.dart';
 import 'package:localingo/widgets/components/quiz_failed_dialog.dart';
 
-import '../../enitity/question.dart';
+import '../../entities/question.dart';
+import '../../viewmodels/chat_viewmodel.dart';
 import 'answer_list_item.dart';
 
 class QuestionListItemComponent extends HookWidget {
   final Question question;
   final String languageType;
-  final bool Function() continueConversation;
+  final ChatViewModel chatViewModel;
   final bool clickable;
   final int score;
 
@@ -17,7 +18,7 @@ class QuestionListItemComponent extends HookWidget {
       {Key? key,
       required this.question,
       required this.languageType,
-      required this.continueConversation,
+      required this.chatViewModel,
       required this.clickable,
       required this.score})
       : super(key: key);
@@ -80,7 +81,7 @@ class QuestionListItemComponent extends HookWidget {
                                 onTap: clickable
                                     ? () async {
                                         if (question.answers[index].correct) {
-                                          if (!continueConversation()) {
+                                          if (!chatViewModel.continueConversation()) {
                                             await showDialog(
                                                 context: context,
                                                 builder: (_) =>

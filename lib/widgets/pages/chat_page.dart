@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:localingo/enitity/answer.dart';
-import 'package:localingo/enitity/conversation.dart';
-import 'package:localingo/enitity/question.dart';
-import 'package:localingo/ui_models/chat_element.dart';
+import 'package:localingo/repositories/chat_repository.dart';
 import 'package:localingo/utils/assets.dart';
 import 'package:localingo/widgets/components/chat_header.dart';
 
-import '../../services/chat_service.dart';
+import '../../viewmodels/chat_viewmodel.dart';
 import '../components/chat_element_list_item.dart';
 
 class ChatPage extends HookWidget {
@@ -17,16 +14,14 @@ class ChatPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final chatService = useChatService(languageType);
-    final String imagePath =
-        ModalRoute.of(context)!.settings.arguments as String;
+    final chatViewModel = useChatViewModel(languageType, ChatRepositoryImpl(languageType: languageType));
 
     useEffect(() {
-      chatService.initConversation();
+      chatViewModel.initConversation();
     }, []);
 
     return Scaffold(
-      appBar: ChatHeader(languageType: languageType, score: chatService.score),
+      appBar: ChatHeader(languageType: languageType, score: chatViewModel.score),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -44,11 +39,11 @@ class ChatPage extends HookWidget {
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: ListView.builder(
                         reverse: true,
-                        itemCount: chatService.chats.length,
+                        itemCount: chatViewModel.chats.length,
                         itemBuilder: (context, index) {
                           final reversedIndex =
-                              chatService.chats.length - 1 - index;
-                          final element = chatService.chats[reversedIndex];
+                              chatViewModel.chats.length - 1 - index;
+                          final element = chatViewModel.chats[reversedIndex];
                           return ListTile(
                             textColor: Colors.black,
                             title: ChatElementListItemComponent(
@@ -56,9 +51,8 @@ class ChatPage extends HookWidget {
                                 element: element,
                                 languageType: languageType,
                                 clickable: index == 0,
-                                continueConversation:
-                                    chatService.continueConversation,
-                                score: chatService.score),
+                                chatViewModel: chatViewModel,
+                                score: chatViewModel.score),
                           );
                         })),
               ),

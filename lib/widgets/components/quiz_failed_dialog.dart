@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:localingo/enitity/answer.dart';
-import 'package:localingo/enitity/question.dart';
+import 'package:localingo/entities/answer.dart';
+import 'package:localingo/entities/question.dart';
 
 class QuizFailedDialog extends StatelessWidget {
   final Question question;

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:localingo/ui_models/chat_element.dart';
+import 'package:localingo/entities/chat_element.dart';
 
 // {ファイル名}.freezed.dart　と書く
 part 'conversation.freezed.dart';
