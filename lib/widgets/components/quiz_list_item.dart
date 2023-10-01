@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:localingo/utils/assets.dart';
 import 'package:localingo/widgets/components/chat_start_dialog.dart';
 
 import '../../entities/quiz.dart';
+import '../../viewmodels/win_score_viewmodel.dart';
 
-class QuizListItemComponent extends StatelessWidget {
+class QuizListItemComponent extends ConsumerWidget {
   final Quiz quiz;
 
   const QuizListItemComponent({Key? key, required this.quiz}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       width: 300,
       height: 75,

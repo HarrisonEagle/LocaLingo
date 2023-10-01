@@ -1,54 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:localingo/entities/quiz.dart';
 import 'package:localingo/widgets/components/common_header.dart';
 
+import '../../viewmodels/win_score_viewmodel.dart';
 import '../components/chat_start_dialog.dart';
 import '../components/quiz_list_item.dart';
 import 'dart:math';
 
-class ChatSelectPage extends StatelessWidget {
+class ChatSelectPage extends ConsumerWidget {
   ChatSelectPage({super.key});
-  final quizzes = [
-    const Quiz(
-        id: 1,
-        languageType: "関西弁",
-        highscore: 0,
-        imagePath:
-            "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
-    const Quiz(
-        id: 2,
-        languageType: "名古屋弁",
-        highscore: 0,
-        imagePath:
-            "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
-    const Quiz(
-        id: 3,
-        languageType: "鹿児島弁",
-        highscore: 0,
-        imagePath:
-            "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
-    const Quiz(
-        id: 4,
-        languageType: "アイヌ語",
-        highscore: 0,
-        imagePath:
-            "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
-    const Quiz(
-        id: 5,
-        languageType: "津軽弁",
-        highscore: 0,
-        imagePath:
-            "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
-  ];
+
+
 
   @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+  Widget build(BuildContext context, WidgetRef ref) {
+    final winScoreRef = ref.watch(winScoreProvider);
+
+    // TODO: refactor and not use constant values
+    final quizzes = [
+      Quiz(
+          id: 1,
+          languageType: "関西弁",
+          highscore: winScoreRef.getMaxWinScore("関西弁"),
+          imagePath:
+          "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
+      Quiz(
+          id: 2,
+          languageType: "名古屋弁",
+          highscore: winScoreRef.getMaxWinScore("名古屋弁"),
+          imagePath:
+          "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
+      Quiz(
+          id: 3,
+          languageType: "鹿児島弁",
+          highscore: winScoreRef.getMaxWinScore("鹿児島弁"),
+          imagePath:
+          "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
+      Quiz(
+          id: 4,
+          languageType: "アイヌ語",
+          highscore: winScoreRef.getMaxWinScore("アイヌ語"),
+          imagePath:
+          "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
+      Quiz(
+          id: 5,
+          languageType: "津軽弁",
+          highscore: winScoreRef.getMaxWinScore("津軽弁"),
+          imagePath:
+          "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png"),
+    ];
     return Scaffold(
       appBar: const CommonHeader(automaticallyImplyLeading: false),
       body: Container(

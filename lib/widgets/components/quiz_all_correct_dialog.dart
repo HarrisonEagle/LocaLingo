@@ -55,8 +55,7 @@ class QuizAllCorrectDialog extends StatelessWidget {
                   elevation: 0,
                 ),
                 onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.pop(context);
+                  Navigator.pushReplacementNamed(context, '/chats');
                 },
                 child: const Text(
                   '戻る',
