@@ -13,7 +13,7 @@ class QuizListItemComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 300,
-      height: 85,
+      height: 75,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -27,9 +27,9 @@ class QuizListItemComponent extends StatelessWidget {
           ]),
       child: ListTile(
           title: Text(quiz.languageType),
-          subtitle: Text('最高${quiz.highscore}回連続'),
+          subtitle: Text('最高${quiz.highscore}回連続正解'),
           leading: CircleAvatar(
-            radius: 48, // Image radius
+            radius: 35, // Image radius
             backgroundImage: Image.asset(assets[quiz.languageType]!["icon"]!, fit: BoxFit.fill).image,
           ),
           onTap: () async {
