@@ -11,23 +11,62 @@ class QuizAllCorrectDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      content: Text(
-        'おめでとうございます！\n全$score問正解です！',
-        style: const TextStyle(fontSize: 20),
-      ),
-      actions: <Widget>[
-        GestureDetector(
-          child: const Text(
-            'はい',
-            style: TextStyle(color: Colors.lightBlueAccent, fontSize: 16),
-          ),
-          onTap: () {
-            Navigator.pop(context);
-            Navigator.pop(context);
-          },
-        )
-      ],
+    return Dialog(
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        insetPadding: const EdgeInsets.fromLTRB(20, 250, 20, 370),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                '🎉おめでとうございます！🎉',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '全',
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                    Text(
+                      score.toString(),
+                      style: const TextStyle(fontSize: 50, color: Colors.green),
+                    ),
+                    Text(
+                      '問正解です！',
+                      style: const TextStyle(fontSize: 20),
+                    )
+                  ],),),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.blue,
+                  backgroundColor: Colors.white,
+                  minimumSize: const Size.fromHeight(50),
+                  elevation: 0,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  '戻る',
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+              )
+            ],),
+        ),
     );
   }
 }
